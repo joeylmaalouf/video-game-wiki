@@ -1,0 +1,9 @@
+<table>
+  <tr ng-repeat="page in pages">
+    <td>
+      <a ng-click="viewPage(page.title);">{{page.title}}</a>
+    </td>
+  </tr>
+</table>
+<br>
+<a ng-model="currentPage.body">{{currentPage.body}}</a>
