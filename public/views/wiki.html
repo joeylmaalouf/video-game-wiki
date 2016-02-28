@@ -1,12 +1,8 @@
 <div class="sidebar">
-  <table>
-    <tr ng-repeat="page in pages">
-      <td>
-        <a ng-click="viewPage(page.title);">{{page.title}}</a>
-      </td>
-    </tr>
-  </table>
+  <a ng-click="showAllPages();">List Pages</a><br>
+  <a ng-click="showRandomPage();">Random Page</a><br>
+  <a ng-click="showPageForm();">New Page</a><br>
 </div>
 <div class="content">
-  <a>{{currentPage.body}}</a>
+  <div ng-include="contentTemplate"></div>
 </div>

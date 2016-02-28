@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", index.home);
-app.get("/getPages", index.getPages);
+app.get("/getPageTitles", index.getPageTitles);
+app.get("/getPage/:title", index.getPage);
 app.post("/makePage", index.makePage);
 
 app.listen(PORT, function () {
