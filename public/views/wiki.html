@@ -1,8 +1,8 @@
 <div class="sidebar">
-  <a ng-click="showAllPages();">List Pages</a><br>
-  <a ng-click="showRandomPage();">Random Page</a><br>
-  <a ng-click="showPageForm();">New Page</a><br>
+  <a class="clickable" ng-click="showAllPages();">List Pages</a><br>
+  <a class="clickable" ng-click="showRandomPage();">Random Page</a><br>
+  <a class="clickable" ng-click="showPageForm(null);">New Page</a><br>
 </div>
 <div class="content">
-  <div ng-include="contentTemplate"></div>
+  <div ng-include="contentTemplatePath"></div>
 </div>

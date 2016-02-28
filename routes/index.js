@@ -9,7 +9,7 @@ routes.home = function (req, res) {
 
 routes.getPageTitles = function (req, res) {
   Page.find({}, function (err, pages) {
-    if (err) return console.log(err);
+    if (err) return res.send(500, {"error": err});
     var pageTitles = [];
     pages.forEach(function (page) {
       pageTitles.push(page.title);
@@ -20,22 +20,15 @@ routes.getPageTitles = function (req, res) {
 
 routes.getPage = function (req, res) {
   Page.findOne({"title": req.params.title}, function (err, page) {
-    if (err) return console.log(err);
+    if (err) return res.send(500, {"error": err});
     res.json(page.toObject());
   });
 };
 
-routes.makePage = function (req, res) {
-  Page.count({"title": req.body.title}, function (err, count) {
-    if (!count) {
-      Page.create(req.body, function (err, page) {
-        if (err) return console.log(err);
-        res.json({"successful": true, "title": page.title});
-      });
-    }
-    else {
-      res.json({"successful": false});
-    }
+routes.submitPage = function (req, res) {
+  Page.findOneAndUpdate({"title": req.body.title}, req.body, {"upsert": true}, function (err, page) {
+    if (err) return res.send(500, {"error": err});
+    res.json(req.body);
   });
 };
 

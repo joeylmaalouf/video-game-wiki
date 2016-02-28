@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get("/", index.home);
 app.get("/getPageTitles", index.getPageTitles);
 app.get("/getPage/:title", index.getPage);
-app.post("/makePage", index.makePage);
+app.post("/submitPage", index.submitPage);
 
 app.listen(PORT, function () {
   console.log("Application running on port:", PORT);

@@ -3,11 +3,11 @@
   width: 10%;
 }
 
-.sidebar a {
-  cursor: pointer;
-}
-
 .content {
   float: right;
   width: 90%;
+}
+
+.clickable {
+  cursor: pointer;
 }
