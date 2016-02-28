@@ -9,24 +9,24 @@ app.config(function ($routeProvider, $locationProvider) {
 });
 
 app.controller("mainController", function ($scope, $http) {
-  $scope.pageTitles = [];
+  $scope.pagesInfo = [];
   $scope.currentPage = {};
   $scope.contentTemplatePath = "";
   $scope.formMessage = "";
   $scope.formTitle = "";
   $scope.formBody = "";
-  $scope.getPageTitles = function () {
-    $http.get("/getPageTitles").then(
-      function (res) { $scope.pageTitles = res.data.sort(); },
+  $scope.getPagesInfo = function () {
+    $http.get("/getPagesInfo").then(
+      function (res) { $scope.pagesInfo = res.data.sort(function (a, b) { return a.title.localeCompare(b.title); }); },
       function (err) { console.log(err); }
     );
   };
   $scope.showAllPages = function () {
-    $scope.getPageTitles();
+    $scope.getPagesInfo();
     $scope.contentTemplatePath = "views/list.html";
   };
-  $scope.viewPage = function (pageTitle) {
-    $http.get("/getPage/" + pageTitle).then(
+  $scope.viewPage = function (pageId) {
+    $http.get("/getPage/" + pageId).then(
       function (res) {
         $scope.currentPage = res.data;
         $scope.contentTemplatePath = "views/page.html";
@@ -35,11 +35,12 @@ app.controller("mainController", function ($scope, $http) {
     );
   };
   $scope.showRandomPage = function () {
-    if ($scope.pageTitles.length) {
-      $scope.viewPage($scope.pageTitles[Math.floor(Math.random() * $scope.pageTitles.length)]);
+    if ($scope.pagesInfo.length) {
+      $scope.viewPage($scope.pagesInfo[Math.floor(Math.random() * $scope.pagesInfo.length)]._id);
     }
   };
   $scope.showPageForm = function (page) {
+    $scope.currentPage = page;
     $scope.formMessage = page ? "Editing Page: " + page.title : "Create a New Page";
     $scope.formTitle = page ? page.title : "";
     $scope.formBody = page ? page.body : "";
@@ -48,13 +49,14 @@ app.controller("mainController", function ($scope, $http) {
   $scope.submitPage = function () {
     if ($scope.formTitle && $scope.formBody) {
       $http.post("/submitPage", {
+        "id": $scope.currentPage ? $scope.currentPage._id : null,
         "title": $scope.formTitle,
-        "body": $scope.formBody,
-        "timestamp": new Date()
+        "body": $scope.formBody
       }).then(
-        function (res) { $scope.viewPage(res.data.title); },
+        function (res) { $scope.viewPage(res.data._id); },
         function (err) { console.log(err); }
       );
+      $scope.formMessage = "";
       $scope.formTitle = "";
       $scope.formBody = "";
     }
