@@ -1,4 +1,4 @@
-var app = angular.module("wiki", ["ngRoute", "ngSanitize"]);
+var app = angular.module("wiki", ["ngRoute"]);
 
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider.when("/", {
@@ -8,7 +8,7 @@ app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-app.controller("mainController", function ($scope, $http, $compile) {
+app.controller("mainController", function ($scope, $http) {
   $scope.pageTitles = [];
   $scope.currentPage = {};
   $scope.contentTemplate = "";
