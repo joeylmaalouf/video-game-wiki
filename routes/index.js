@@ -30,7 +30,7 @@ routes.makePage = function (req, res) {
     if (!count) {
       Page.create(req.body, function (err, page) {
         if (err) return console.log(err);
-        res.json({"successful": true});
+        res.json({"successful": true, "title": page.title});
       });
     }
     else {

@@ -12,10 +12,12 @@ app.controller("mainController", function ($scope, $http) {
   $scope.pageTitles = [];
   $scope.currentPage = {};
   $scope.contentTemplate = "";
+  $scope.inputTitle = "";
+  $scope.inputBody = "";
   $scope.getPageTitles = function () {
     $http.get("/getPageTitles").then(
       function (res) { $scope.pageTitles = res.data; },
-      function (err) { console.log("Error: " + err); }
+      function (err) { console.log(err); }
     );
   };
   $scope.showAllPages = function () {
@@ -27,25 +29,39 @@ app.controller("mainController", function ($scope, $http) {
         $scope.currentPage = res.data;
         $scope.contentTemplate = "views/page.html";
       },
-      function (err) { console.log("Error: " + err); }
+      function (err) { console.log(err); }
     );
   };
   $scope.showRandomPage = function () {
-    $scope.viewPage($scope.pageTitles[Math.floor(Math.random() * $scope.pageTitles.length)]);
+    // maybe hide/strikethrough/fade via css if no pages
+    if ($scope.pageTitles.length) {
+      $scope.viewPage($scope.pageTitles[Math.floor(Math.random() * $scope.pageTitles.length)]);
+    }
   };
   $scope.showPageForm = function () {
-    // TODO
+    $scope.contentTemplate = "views/new.html";
   };
   $scope.makePage = function () {
-    var formData = {/**/};
-    $http.post("/makePage", formData).then(
-      function (res) { 
-        if (res.successful) {
-          $scope.pageTitles.push(formData.title);
-        }
-      },
-      function (err) { console.log("Error: " + err); }
-    );
+    if ($scope.inputTitle && $scope.inputBody) {
+      $http.post("/makePage", {
+        "title": $scope.inputTitle,
+        "body": $scope.inputBody,
+        "timestamp": new Date()
+      }).then(
+        function (res) {
+          if (res.data.successful) {
+            $scope.pageTitles.push(res.data.title);
+            $scope.viewPage(res.data.title);
+          }
+          else {
+            $scope.showAllPages();
+          }
+        },
+        function (err) { console.log(err); }
+      );
+      $scope.inputTitle = "";
+      $scope.inputBody = "";
+    }
   };
   $scope.getPageTitles();
   $scope.showAllPages();
