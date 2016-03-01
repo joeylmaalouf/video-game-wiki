@@ -15,7 +15,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//
+app.get("/", index.home);
+app.get("/getPagesInfo", index.getPagesInfo);
+app.get("/getPage/:_id", index.getPage);
+app.post("/submitPage", index.submitPage);
 
 app.listen(PORT, function () {
   console.log("Application running on port:", PORT);

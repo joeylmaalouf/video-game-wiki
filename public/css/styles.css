@@ -1,0 +1,13 @@
+.sidebar {
+  float: left;
+  width: 10%;
+}
+
+.content {
+  float: right;
+  width: 90%;
+}
+
+.clickable {
+  cursor: pointer;
+}
