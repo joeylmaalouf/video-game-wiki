@@ -39,4 +39,11 @@ routes.submitPage = function (req, res) {
   else { Page.create(pageData, callback); }
 };
 
+routes.deletePage = function (req, res) {
+  Page.findByIdAndRemove(req.body._id, function (err, page) {
+    if (err) return res.status(500).send({"error": err});
+    res.json(page.toObject());
+  });
+};
+
 module.exports = routes;

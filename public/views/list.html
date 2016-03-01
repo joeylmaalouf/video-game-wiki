@@ -1,8 +1,8 @@
 <h1>Page Listing</h1>
 <table>
-  <tr ng-repeat="page in pagesInfo">
+  <tr ng-repeat="page in pagesInfo | filter:searchFilter">
     <td>
-      <a ng-click="viewPage(page._id);">{{page.title}}</a>
+      <a class="clickable" ng-click="viewPage(page._id);">{{page.title}}</a>
     </td>
   </tr>
 </table>

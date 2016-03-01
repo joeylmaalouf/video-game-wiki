@@ -19,6 +19,7 @@ app.get("/", index.home);
 app.get("/getPagesInfo", index.getPagesInfo);
 app.get("/getPage/:_id", index.getPage);
 app.post("/submitPage", index.submitPage);
+app.put("/deletePage", index.deletePage);
 
 app.listen(PORT, function () {
   console.log("Application running on port:", PORT);
