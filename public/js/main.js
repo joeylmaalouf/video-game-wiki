@@ -12,6 +12,7 @@ app.controller("mainController", function ($scope, $http) {
   $scope.pagesInfo = [];
   $scope.currentPage = {};
   $scope.contentTemplatePath = "";
+  $scope.searchFilter = "";
   $scope.formMessage = "";
   $scope.formTitle = "";
   $scope.formBody = "";
@@ -69,7 +70,7 @@ app.controller("mainController", function ($scope, $http) {
       $http.put("/deletePage", {
         "_id": $scope.currentPage._id,
       }).then(
-        function (res) { },
+        function (res) {},
         function (err) { console.log(err); }
       );
     }
