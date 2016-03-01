@@ -1,9 +1,13 @@
-<div class="sidebar">
-  <form ng-submit="showAllPages();"><input type="text" placeholder="Search..." size="12" ng-model="searchFilter"></form><br>
-  <a class="clickable" ng-click="showAllPages();">List Pages</a><br>
-  <a class="clickable" ng-click="showRandomPage();">Random Page</a><br>
-  <a class="clickable" ng-click="showPageForm(null);">New Page</a><br>
-</div>
-<div class="content">
-  <div ng-include="contentTemplatePath"></div>
+<div class="container">
+  <div class="col-sm-3">
+    <form ng-submit="showAllPages();"><input type="text" class="form-control" placeholder="Search..." size="12" ng-model="searchFilter"></form><br>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a class="clickable" ng-click="showAllPages();">List Pages</a><br></li>
+      <li><a class="clickable" ng-click="showRandomPage();">Random Page</a><br></li>
+      <li><a class="clickable" ng-click="showPageForm(null);">New Page</a><br></li>
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    <div ng-include="contentTemplatePath"></div>
+  </div>
 </div>

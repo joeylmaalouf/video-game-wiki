@@ -1,5 +1,9 @@
 var app = angular.module("wiki", ["ngRoute"]);
 
+$(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
+
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider.when("/", {
       templateUrl : "../views/wiki.html",
