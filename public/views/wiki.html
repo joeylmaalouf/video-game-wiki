@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <input type="text" placeholder="Search..." size="12" ng-model="searchFilter"><br>
+  <form ng-submit="showAllPages();"><input type="text" placeholder="Search..." size="12" ng-model="searchFilter"></form><br>
   <a class="clickable" ng-click="showAllPages();">List Pages</a><br>
   <a class="clickable" ng-click="showRandomPage();">Random Page</a><br>
   <a class="clickable" ng-click="showPageForm(null);">New Page</a><br>
