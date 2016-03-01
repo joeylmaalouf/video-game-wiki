@@ -15,6 +15,7 @@ app.controller("mainController", function ($scope, $http) {
   $scope.formMessage = "";
   $scope.formTitle = "";
   $scope.formBody = "";
+  $scope.formExitButton = "";
   $scope.getPagesInfo = function () {
     $http.get("/getPagesInfo").then(
       function (res) { $scope.pagesInfo = res.data.sort(function (a, b) { return a.title.localeCompare(b.title); }); },
@@ -40,10 +41,11 @@ app.controller("mainController", function ($scope, $http) {
     }
   };
   $scope.showPageForm = function (page) {
+    $scope.formMessage    = page ? "Editing Page: " + page.title : "Create a New Page";
+    $scope.formTitle      = page ? page.title                    : "";
+    $scope.formBody       = page ? page.body                     : "";
+    $scope.formExitButton = page ? "Delete"                      : "Cancel";
     $scope.currentPage = page;
-    $scope.formMessage = page ? "Editing Page: " + page.title : "Create a New Page";
-    $scope.formTitle = page ? page.title : "";
-    $scope.formBody = page ? page.body : "";
     $scope.contentTemplatePath = "views/form.html";
   };
   $scope.submitPage = function () {
@@ -59,7 +61,19 @@ app.controller("mainController", function ($scope, $http) {
       $scope.formMessage = "";
       $scope.formTitle = "";
       $scope.formBody = "";
+      $scope.formExitButton = "";
     }
+  };
+  $scope.deletePage = function () {
+    if ($scope.currentPage) {
+      $http.put("/deletePage", {
+        "_id": $scope.currentPage._id,
+      }).then(
+        function (res) { },
+        function (err) { console.log(err); }
+      );
+    }
+    $scope.showAllPages();
   };
   $scope.showAllPages();
 });
