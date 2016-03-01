@@ -1,0 +1,25 @@
+{
+  "name": "video-game-wiki",
+  "version": "1.0.0",
+  "description": "A wiki implented in Node.js with Angular, for lab 1 of Olin.js.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeylmaalouf/video-game-wiki.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeylmaalouf/video-game-wiki/issues"
+  },
+  "homepage": "https://github.com/joeylmaalouf/video-game-wiki#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.5",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,12 @@
+<h1>{{formMessage}}</h1>
+<table>
+  <tr>
+    <td>Title:</td>
+    <td><input type="text" ng-model="$parent.formTitle"></td>
+  </tr>
+  <tr>
+    <td>Body:</td>
+    <td><textarea ng-model="$parent.formBody"></textarea></td>
+  </tr>
+</table>
+<input type="button" value="Submit" ng-click="submitPage();">

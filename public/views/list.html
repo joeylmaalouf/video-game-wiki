@@ -1,0 +1,8 @@
+<h1>Page Listing</h1>
+<table>
+  <tr ng-repeat="page in pagesInfo">
+    <td>
+      <a ng-click="viewPage(page._id);">{{page.title}}</a>
+    </td>
+  </tr>
+</table>
