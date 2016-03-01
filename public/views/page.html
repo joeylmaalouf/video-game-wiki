@@ -1,3 +1,6 @@
-<a>{{currentPage.title}}</a> - <a>Last edited: {{currentPage.timestamp | date:"medium"}}</a> - <a class="clickable" ng-click="showPageForm(currentPage);">Edit Page</a>
+<div class="jumbotron">
+  <h1>{{currentPage.title}}</h1>
+</div>
+<a data-toggle="tooltip" title="Last edited: {{currentPage.timestamp | date:'medium'}}" ng-click="showPageForm(currentPage);">Edit Page</a>
 <hr>
 <p>{{currentPage.body}}</p>

@@ -1,8 +1,12 @@
-<div class="sidebar">
-  <a class="clickable" ng-click="showAllPages();">List Pages</a><br>
-  <a class="clickable" ng-click="showRandomPage();">Random Page</a><br>
-  <a class="clickable" ng-click="showPageForm(null);">New Page</a><br>
-</div>
-<div class="content">
-  <div ng-include="contentTemplatePath"></div>
+<div class="container">
+  <div class="col-sm-3">
+    <ul class="nav nav-stacked">
+      <li><a class="clickable" ng-click="showAllPages();">List Pages</a><br></li>
+      <li><a class="clickable" ng-click="showRandomPage();">Random Page</a><br></li>
+      <li><a class="clickable" ng-click="showPageForm(null);">New Page</a><br></li>
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    <div ng-include="contentTemplatePath"></div>
+  </div>
 </div>
