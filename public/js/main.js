@@ -49,7 +49,7 @@ app.controller("mainController", function ($scope, $http) {
   $scope.submitPage = function () {
     if ($scope.formTitle && $scope.formBody) {
       $http.post("/submitPage", {
-        "id": $scope.currentPage ? $scope.currentPage._id : null,
+        "_id": $scope.currentPage ? $scope.currentPage._id : null,
         "title": $scope.formTitle,
         "body": $scope.formBody
       }).then(
