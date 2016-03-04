@@ -1,3 +1,5 @@
+// The route functions for server-side functionality.
+
 var path = require("path");
 var Page = require("../models/pageModel");
 

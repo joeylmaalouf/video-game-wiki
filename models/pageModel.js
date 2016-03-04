@@ -1,3 +1,5 @@
+// The database model definition of a wiki page.
+
 var mongoose = require("mongoose");
 
 var pageSchema = mongoose.Schema({

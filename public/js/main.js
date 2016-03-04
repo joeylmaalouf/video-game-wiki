@@ -1,7 +1,9 @@
+// The controller functions for client-side functionality.
+
 var app = angular.module("wiki", ["ngRoute"]);
 
-$(document).ready(function() {
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+$(document).ready(function () {
+    $("body").tooltip({selector: "[data-toggle=tooltip]"});
 });
 
 app.config(function ($routeProvider, $locationProvider) {

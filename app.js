@@ -1,3 +1,5 @@
+// The main file that runs the server.
+
 var express = require("express");
 var path = require("path");
 var mongoose = require("mongoose");
