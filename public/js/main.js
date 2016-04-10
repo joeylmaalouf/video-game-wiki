@@ -2,6 +2,7 @@
 
 var app = angular.module("wiki", ["ngRoute"]);
 
+// I like that
 $(document).ready(function () {
     $("body").tooltip({selector: "[data-toggle=tooltip]"});
 });
@@ -11,8 +12,14 @@ app.config(function ($routeProvider, $locationProvider) {
       templateUrl : "../views/wiki.html",
       controller: "mainController"
     });
+
+    // What is the purpose of this line here?
     $locationProvider.html5Mode(true);
 });
+
+// General comments:
+//    - Nice code architecture
+//    - You could further breakdown your logic into multiple controllers, yet one suffices here
 
 app.controller("mainController", function ($scope, $http) {
   $scope.pagesInfo = [];
@@ -47,6 +54,7 @@ app.controller("mainController", function ($scope, $http) {
       $scope.viewPage($scope.pagesInfo[Math.floor(Math.random() * $scope.pagesInfo.length)]._id);
     }
   };
+  // Nice use of efficient syntax
   $scope.showPageForm = function (page) {
     $scope.formMessage    = page ? "Editing Page: " + page.title : "Create a New Page";
     $scope.formTitle      = page ? page.title                    : "";
