@@ -3,6 +3,7 @@
 var app = angular.module("wiki", ["ngRoute"]);
 
 $(document).ready(function () {
+    // Last-edited in the tooltip on the edit link! Very elegant :)
     $("body").tooltip({selector: "[data-toggle=tooltip]"});
 });
 
@@ -48,6 +49,7 @@ app.controller("mainController", function ($scope, $http) {
     }
   };
   $scope.showPageForm = function (page) {
+    // elegant!
     $scope.formMessage    = page ? "Editing Page: " + page.title : "Create a New Page";
     $scope.formTitle      = page ? page.title                    : "";
     $scope.formBody       = page ? page.body                     : "";

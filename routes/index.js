@@ -16,6 +16,11 @@ routes.getPagesInfo = function (req, res) {
     pages.forEach(function (page) {
       pagesInfo.push({"_id": page._id, "title": page.title});
     });
+    /* You could use a map to do this even more concisely:
+    var pagesInfo = pages.map(function(page) {
+      return {"_id": page._id, "title": page.title};
+    });
+     */
     res.json(pagesInfo);
   });
 };
@@ -37,6 +42,7 @@ routes.submitPage = function (req, res) {
     if (err) return res.status(500).send({"error": err});
     res.json(page.toObject());
   };
+  // this is elegant!
   if (req.body._id) { Page.findOneAndUpdate({"_id": req.body._id}, pageData, callback); }
   else { Page.create(pageData, callback); }
 };
